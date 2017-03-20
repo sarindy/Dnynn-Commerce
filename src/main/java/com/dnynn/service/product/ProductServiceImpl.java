@@ -1,6 +1,9 @@
 package com.dnynn.service.product;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void addProduct(ProductTable product) {
+		DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+		Date currentDate = new Date();
+		System.out.println(df.format(currentDate));
+		product.setLastModifiedDate( currentDate);
 		productRepo.save(product);
 	}
 
@@ -43,8 +50,13 @@ public class ProductServiceImpl implements ProductService {
 				.findOne(product.getProductId());
 		if (updateProduct != null) {
 			productRepo.delete(updateProduct);
+			Date currentDate = new Date();
+			product.setLastModifiedDate( currentDate);
 			productRepo.save(product);
 		} else {
+			Date currentDate = new Date();
+			product.setLastModifiedDate( currentDate);
+			productRepo.save(product);
 			productRepo.save(product);
 		}
 

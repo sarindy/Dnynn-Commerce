@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Product Registration Form</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/addProduct.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<form autocomplete="off" action="#" th:action="@{/addProduct}"
+					th:object="${productTable}" method="post" class="form-horizontal"
+					role="form">
+					<h2>Product Registration Form</h2>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Product
+									Name</span> <input type="text" th:field="*{name}" class="form-control"
+									placeholder="Product Name" aria-describedby="sizing-addon2" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('productNumber')}"
+								th:errors="*{productNumber}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Product
+									Number</span> <input type="text" th:field="*{productNumber}"
+									class="form-control" placeholder="Product Number"
+									aria-describedby="sizing-addon2" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('makeFlag')}"
+								th:errors="*{makeFlag}" class="validation-message">not
+								null</label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Make
+									flag</span> <input type="number" th:field="*{makeFlag}"
+									placeholder="0" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('color')}" th:errors="*{color}"
+								class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Color</span>
+								<input type="text" th:field="*{color}" placeholder="Color"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('safetyStockLevel')}"
+								th:errors="*{safetyStockLevel}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Safety
+									Stock Level</span> <input type="number" th:field="*{safetyStockLevel}"
+									placeholder="Safety Stock Level" class="form-control" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('size')}"
+								th:errors="*{size}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Product Size</span> <input type="text" th:field="*{size}"
+									placeholder="Size" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('reorderPoint')}"
+								th:errors="*{reorderPoint}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Reorder
+									Point</span> <input type="number" th:field="*{reorderPoint}"
+									placeholder="0" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('standardCost')}"
+								th:errors="*{standardCostl}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Standard
+									Cost</span> <input type="text" th:field="*{standardCost}"
+									placeholder="9.50" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('listPrice')}"
+								th:errors="*{listPrice}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">List
+									Price</span> <input type="text" th:field="*{listPrice}"
+									placeholder="10.50" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('saleStartDate')}"
+								th:errors="*{saleStartDate}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Sale
+									Start Date</span> <input type="text" th:field="*{saleStartDate}"
+									placeholder="" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('saleEndDate')}"
+								th:errors="*{saleEndDate}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Sale
+									End Date</span> <input type="text" th:field="*{saleEndDate}"
+									placeholder="" class="form-control" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<label th:if="${#fields.hasErrors('discontinuedDate')}"
+								th:errors="*{discontinuedDate}" class="validation-message"></label>
+							<div class="input-group">
+								<span class="input-group-addon" id="sizing-addon2">Sale
+									End Date</span> <input type="text" th:field="*{discontinuedDate}"
+									placeholder="discontinuedDate" class="form-control" />
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Register
+								Product</button>
+						</div>
+					</div>
+					<span th:utext="${successMessage}"></span>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

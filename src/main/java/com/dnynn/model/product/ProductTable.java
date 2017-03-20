@@ -1,6 +1,8 @@
 package com.dnynn.model.product;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,13 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Future;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 
 @Entity
 @Table(name="product_table",uniqueConstraints=@UniqueConstraint(columnNames={"product_name","product_number"}))
@@ -26,64 +31,59 @@ public class ProductTable {
 	private int productId;
 	
 	@Column(name="product_name")
-	@Size(max=255)
-	@NotNull
+	@NotEmpty(message="* Can not Empty")
 	private String name;
 	
 	@Column(name="product_number")
-	@Size(max=25)
-	@NotNull
+	@NotEmpty(message="* Can not Empty")
 	private String productNumber;
 	
 	@Column(name="make_flag")
-	@NotNull
+	@Min(1)
+	@NotNull(message="not null")
 	private int makeFlag; //0= Product is purchased, 1=Product is in house made
 	
 	@Column(name="color")
-	@Null
+	@NotEmpty(message="* Can not Empty")
 	private String color;
 	
 	@Column(name="safety_stock_leve")
-	@NotNull
 	private int safetyStockLevel; //minimum alert stock quantity
 	
 	@Column(name="reorder_point")
-	@NotNull
 	private int reorderPoint; //quatity alert to reorder product
 	
 	@Column(name="standard_cost")
-	@NotNull
-	private double standardCost; //Standard Cost of the product
+	@DecimalMin(value="1")
+	private Double standardCost; //Standard Cost of the product
 	
 	@Column(name="list_price")
-	@NotNull
-	private double listPrice; //selling price
+	@DecimalMin(value="1")
+	private Double listPrice; //selling price
 	
 	@Column(name="size")
-	@Null
+	@NotEmpty(message="* Can not Empty")
 	private String size; //Product size
 	
 	
 	@Column(name="sale_start_date")
-	@NotNull
-	@DateTimeFormat(pattern="dd-MM-yyyy")
-	//@Future
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MMM/yyyy")
 	private Date saleStartDate;
 	
 	@Column(name="sale_end_date")
-	@NotNull
-	@Future
-	@DateTimeFormat(pattern="dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MMM/yyyy")
 	private Date saleEndDate;
 	
 	@Column(name="discontinue_date")
-	@NotNull
-	@DateTimeFormat(pattern="dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MMM/yyyy")
 	private Date discontinuedDate;
 	
 	@Column(name="last_modified_date")
-	@NotNull
-	@DateTimeFormat(pattern="dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date lastModifiedDate;
 
 	public int getProductId() {
@@ -142,19 +142,19 @@ public class ProductTable {
 		this.reorderPoint = reorderPoint;
 	}
 
-	public double getStandardCost() {
+	public Double getStandardCost() {
 		return standardCost;
 	}
 
-	public void setStandardCost(double standardCost) {
+	public void setStandardCost(Double standardCost) {
 		this.standardCost = standardCost;
 	}
 
-	public double getListPrice() {
+	public Double getListPrice() {
 		return listPrice;
 	}
 
-	public void setListPrice(double listPrice) {
+	public void setListPrice(Double listPrice) {
 		this.listPrice = listPrice;
 	}
 
@@ -199,9 +199,10 @@ public class ProductTable {
 	}
 
 	public ProductTable() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
+	
+	
 	
 	
 	
