@@ -58,30 +58,6 @@ public class TestController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/testModel", method = RequestMethod.GET)
-	public ModelAndView registration() {
-		ModelAndView modelAndView = new ModelAndView();
-		TestModel testModel = new TestModel();
-		modelAndView.addObject("testModel", testModel);
-		modelAndView.setViewName("testModel");
-		return modelAndView;
-	}
-
-	@RequestMapping(value = "/testModel", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@Valid TestModel testModel, BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView();
-
-		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("testModel");
-			
-		} else {
-
-			modelAndView.addObject("successMessage", "User has been registered successfully");
-			modelAndView.addObject("testModel", new TestModel());
-			modelAndView.setViewName("testModel");
-
-		}
-		return modelAndView;
-	}
+	
 
 }
