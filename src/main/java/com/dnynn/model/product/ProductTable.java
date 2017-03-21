@@ -1,7 +1,5 @@
 package com.dnynn.model.product;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,71 +17,70 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.validation.annotation.Validated;
 
 @Entity
-@Table(name="product_table",uniqueConstraints=@UniqueConstraint(columnNames={"product_name","product_number"}))
+@Table(name = "product_table", uniqueConstraints = @UniqueConstraint(columnNames = {
+		"product_name", "product_number"}))
 public class ProductTable {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="product_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "product_id")
 	private int productId;
-	
-	@Column(name="product_name")
-	@NotEmpty(message="* Can not Empty")
+
+	@Column(name = "product_name")
+	@NotEmpty(message = "* Can not Empty")
 	private String name;
-	
-	@Column(name="product_number")
-	@NotEmpty(message="* Can not Empty")
+
+	@Column(name = "product_number")
+	@NotEmpty(message = "* Can not Empty")
 	private String productNumber;
-	
-	@Column(name="make_flag")
+
+	@Column(name = "make_flag")
 	@Min(1)
-	@NotNull(message="not null")
-	private int makeFlag; //0= Product is purchased, 1=Product is in house made
-	
-	@Column(name="color")
-	@NotEmpty(message="* Can not Empty")
+	@NotNull(message = "not null")
+	private int makeFlag; // 0= Product is purchased, 1=Product is in house made
+
+	@Column(name = "color")
+	@NotEmpty(message = "* Can not Empty")
 	private String color;
-	
-	@Column(name="safety_stock_leve")
-	private int safetyStockLevel; //minimum alert stock quantity
-	
-	@Column(name="reorder_point")
-	private int reorderPoint; //quatity alert to reorder product
-	
-	@Column(name="standard_cost")
-	@DecimalMin(value="1")
-	private Double standardCost; //Standard Cost of the product
-	
-	@Column(name="list_price")
-	@DecimalMin(value="1")
-	private Double listPrice; //selling price
-	
-	@Column(name="size")
-	@NotEmpty(message="* Can not Empty")
-	private String size; //Product size
-	
-	
-	@Column(name="sale_start_date")
+
+	@Column(name = "safety_stock_leve")
+	private int safetyStockLevel; // minimum alert stock quantity
+
+	@Column(name = "reorder_point")
+	private int reorderPoint; // quatity alert to reorder product
+
+	@Column(name = "standard_cost")
+	@DecimalMin(value = "1")
+	private Double standardCost; // Standard Cost of the product
+
+	@Column(name = "list_price")
+	@DecimalMin(value = "1")
+	private Double listPrice; // selling price
+
+	@Column(name = "size")
+	@NotEmpty(message = "* Can not Empty")
+	private String size; // Product size
+
+	@Column(name = "sale_start_date")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MMM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date saleStartDate;
-	
-	@Column(name="sale_end_date")
+
+	@Column(name = "sale_end_date")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MMM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date saleEndDate;
-	
-	@Column(name="discontinue_date")
+
+	@Column(name = "discontinue_date")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MMM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date discontinuedDate;
-	
-	@Column(name="last_modified_date")
+
+	@Column(name = "last_modified_date")
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date lastModifiedDate;
 
 	public int getProductId() {
@@ -199,15 +196,7 @@ public class ProductTable {
 	}
 
 	public ProductTable() {
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

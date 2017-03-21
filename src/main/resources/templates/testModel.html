@@ -43,21 +43,19 @@
 							</div>
 						</div>
 					</div>
+					
+					
 
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Future Date</label>
 						<div class="col-sm-5">
-							<label th:if="${#fields.hasErrors('futureDate')}"
-								th:errors="*{futureDate}" class="validation-message"></label>
+							<label th:if="${#fields.hasErrors('futureDate')}" th:errors="*{futureDate}" class="validation-message"></label>
 							<div class="input-group input-append date" id="datePicker2">
-								<input type="text" name="date" th:field="*{futureDate}"
-									class="form-control" placeholder="Future Date"
-									aria-describedby="sizing-addon2" /> <span
-									class="input-group-addon add-on"><span
-									class="glyphicon glyphicon-calendar"></span></span>
+								<input type="text" name="date" th:field="*{futureDate}"	class="form-control" placeholder="Future Date" aria-describedby="sizing-addon2" />
+								<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
 							</div>
-						</div>
+						</div> 
 					</div>
 				
 				<div class="form-group">
