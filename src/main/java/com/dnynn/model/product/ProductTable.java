@@ -1,12 +1,15 @@
 package com.dnynn.model.product;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +20,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.dnynn.productsubcategory.ProductSubCategory;
 
 @Entity
 @Table(name = "product_table", uniqueConstraints = @UniqueConstraint(columnNames = {
@@ -82,6 +87,11 @@ public class ProductTable {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date lastModifiedDate;
+	
+	@OneToMany(mappedBy="product",cascade=CascadeType.ALL)
+	private List<ProductSubCategory> productSubCategory;
+	
+	
 
 	public int getProductId() {
 		return productId;
@@ -193,6 +203,16 @@ public class ProductTable {
 
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
+	}
+	
+	
+
+	public List<ProductSubCategory> getProductSubCategory() {
+		return productSubCategory;
+	}
+
+	public void setProductSubCategory(List<ProductSubCategory> productSubCategory) {
+		this.productSubCategory = productSubCategory;
 	}
 
 	public ProductTable() {
