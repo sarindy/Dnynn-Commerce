@@ -1,7 +1,9 @@
 package com.dnynn.productsubcategory;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,7 +20,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.dnynn.model.product.ProductTable;
+import com.dnynn.product.ProductTable;
 import com.dnynn.productcategory.ProductCategory;
 
 @Entity
@@ -42,9 +45,9 @@ public class ProductSubCategory {
 	@JoinColumn(name="product_category_id")
 	private ProductCategory productCategory;
 	
-	@ManyToOne
-	@JoinColumn(name="product_id")
-	private ProductTable product;
+	@OneToMany(mappedBy="productSubCategory",cascade=CascadeType.ALL)
+	private List<ProductTable> product;
+	
 	
 	public int getId() {
 		return id;
@@ -78,11 +81,11 @@ public class ProductSubCategory {
 		this.productCategory = productCategory;
 	}
 
-	public ProductTable getProduct() {
+	public List<ProductTable> getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductTable product) {
+	public void setProduct(List<ProductTable> product) {
 		this.product = product;
 	}
 

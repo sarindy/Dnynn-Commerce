@@ -1,8 +1,6 @@
-package com.dnynn.service.product;
+package com.dnynn.product;
 
 import java.util.List;
-
-import com.dnynn.model.product.ProductTable;
 
 public interface ProductService {
 	

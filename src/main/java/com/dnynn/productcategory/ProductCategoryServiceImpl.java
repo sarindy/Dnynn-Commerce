@@ -58,7 +58,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	@Override
 	public ProductCategory getProductCategoryByName(String name) {
 	
-		return (ProductCategory) productCategoryRepository.findByName(name);
+		return  productCategoryRepository.findByName(name);
 	}
 
 }

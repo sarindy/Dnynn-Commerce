@@ -1,15 +1,14 @@
-package com.dnynn.model.product;
+package com.dnynn.product;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -87,11 +86,10 @@ public class ProductTable {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date lastModifiedDate;
-	
-	@OneToMany(mappedBy="product",cascade=CascadeType.ALL)
-	private List<ProductSubCategory> productSubCategory;
-	
-	
+
+	@ManyToOne
+	@JoinColumn(name = "product_sub_category_id")
+	private ProductSubCategory productSubCategory;
 
 	public int getProductId() {
 		return productId;
@@ -204,14 +202,13 @@ public class ProductTable {
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
-	
-	
 
-	public List<ProductSubCategory> getProductSubCategory() {
+	public ProductSubCategory getProductSubCategory() {
 		return productSubCategory;
 	}
 
-	public void setProductSubCategory(List<ProductSubCategory> productSubCategory) {
+	public void setProductSubCategory(
+			ProductSubCategory productSubCategory) {
 		this.productSubCategory = productSubCategory;
 	}
 

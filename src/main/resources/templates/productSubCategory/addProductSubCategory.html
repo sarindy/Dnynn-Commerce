@@ -55,15 +55,16 @@
 							</div>
 						</div>
 					</div>
-					
-					th:text="${productCategory.name}"
-					
-				<!-- <div class="form-group blu-margin">
-    					<select class="form-control" th:field="*{productCategory}" id="dropOperator">
-    						<option th:each="operator : ${productCategoryObj}" th:value="${productCategory.id}" th:text="${productCategory.name}"></option>
-    					</select>
-					</div>  -->
-					
+					<div class="form-group">
+						<div class="col-sm-9">
+							<select class="form-control" th:field="*{productCategory.name}">
+								<option
+									th:each="category : ${productCategoryList}"
+									th:value="${category.name}"
+									th:text="${category.name}"></option>
+							</select>
+						</div>
+					</div>
 					<!-- Submit Button -->
 					<div class="form-group">
 						<div class="col-sm-9">

@@ -1,8 +1,12 @@
 package com.dnynn.productsubcategory;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,34 +28,37 @@ public class ProductSubCategoryController {
 	public ModelAndView createNewProductSubCategory() {
 		ModelAndView modelAndView = new ModelAndView();
 		ProductSubCategory productSubCategory = new ProductSubCategory();
-		modelAndView.addObject("productCategoryObj", productCategoryService.getAllProductCategory());
-		productSubCategory.setProductCategory((ProductCategory) productCategoryService.getAllProductCategory());
+		List<ProductCategory> productCategories = new ArrayList<>();
+		productCategoryService.getAllProductCategory().forEach(productCategories::add);
+		modelAndView.addObject("productCategoryList",productCategories );
 		modelAndView.addObject("productSubCategory", productSubCategory);
 		modelAndView.setViewName("/productSubCategory/addProductSubCategory");
 		return modelAndView;
 	}
 	
-	public List<ProductCategory> getCategory(){
-		return productCategoryService.getAllProductCategory();
-	}
+	
 
-	/*@RequestMapping(value = "/addProductSubCategory", method = RequestMethod.POST)
-	public ModelAndView createNewProductCategory(@Valid ProductCategory productCategory,
+	@RequestMapping(value = "/addProductSubCategory", method = RequestMethod.POST)
+	public ModelAndView createNewProductCategory(@Valid ProductSubCategory productSubCategory,
 			BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("addProduct");
-			System.out.println("has Error" + bindingResult.toString());
+			modelAndView.setViewName("/productSubCategory/addProductSubCategory");
+			
 		} else {
-			productCategoryService.addProductCategory(productCategory);;
-			modelAndView.addObject("successMessage","Product Category has been registered successfully");
-			modelAndView.addObject("productCategory", new ProductCategory());
-			modelAndView.setViewName("/productCategory/addProductCategory");
+			System.out.println(productSubCategory.getProductCategory().getName());
+			ProductCategory productCategory = new ProductCategory();
+			productCategory=productCategoryService.getProductCategoryByName(productSubCategory.getProductCategory().getName());
+			productSubCategory.setProductCategory(productCategory);
+			productSubCategoryService.addProductSubCategory(productSubCategory);
+			modelAndView.addObject("successMessage","Product Sub Category has been registered successfully");
+			modelAndView.addObject("productSubCategory", new ProductSubCategory());
+			modelAndView.setViewName("/productSubCategory/addProductSubCategory");
 
 		}
 		return modelAndView;
-	}*/
+	}
 	
 	/*private List<ProductCategory> populateProductCategory(){
 		List<ProductCategory> productCategories = new ArrayList<>();

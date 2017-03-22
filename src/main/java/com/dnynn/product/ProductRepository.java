@@ -1,9 +1,7 @@
-package com.dnynn.service.product;
+package com.dnynn.product;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.dnynn.model.product.ProductTable;
 
 @Repository
 public interface ProductRepository extends CrudRepository<ProductTable, Integer> {

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html
 	lang="en"
@@ -174,7 +175,7 @@
 						<div class="col-sm-9">
 							<label
 								th:if="${#fields.hasErrors('standardCost')}"
-								th:errors="*{standardCostl}"
+								th:errors="*{standardCost}"
 								class="validation-message"></label>
 							<div class="input-group">
 								<span
@@ -207,6 +208,21 @@
 							</div>
 						</div>
 					</div>
+					<!-- Product Sub Category -->
+					<div class="form-group">
+						<div class="col-sm-9">
+							<select
+								multiple="multiple"
+								class="form-control"
+								th:field="*{productSubCategory.name}">
+								<option
+									th:each="subCategory : ${productSubCategoryList}"
+									th:value="${subCategory.name}"
+									th:text="${subCategory.name}"></option>
+							</select>
+						</div>
+					</div>
+					
 					<!-- Sale Start Date -->
 					<div class="form-group">
 						<div class="col-sm-9">
@@ -220,9 +236,10 @@
 									id="sizing-addon2">Sale Start Date</span>
 								<div
 									class="input-group input-append date"
-									id="saleStartDate" style="width:300px">
+									id="saleStartDate"
+									style="width: 300px">
 									<input
-										type="text" 
+										type="text"
 										th:field="*{saleStartDate}"
 										placeholder="Sale Start Date"
 										class="form-control" /> <span class="input-group-addon add-on"> <span

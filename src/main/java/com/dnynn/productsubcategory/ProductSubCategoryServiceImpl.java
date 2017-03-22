@@ -1,6 +1,7 @@
 package com.dnynn.productsubcategory;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ProductSubCategoryServiceImpl
 	@Override
 	public ProductSubCategory getProductSubCategoryByName(String name) {
 
-		return (ProductSubCategory) productSubCategoryRepository
+		return  productSubCategoryRepository
 				.findByName(name);
 	}
 
@@ -50,7 +51,7 @@ public class ProductSubCategoryServiceImpl
 		productCategory = productCategoryService
 				.getProductCategoryByName(productCategoryName);
 		// ****************************************************
-
+		productSubCategory.setLastModifiedDate(new Date());
 		productSubCategory.setProductCategory(productCategory);
 		productSubCategoryRepository.save(productSubCategory);
 
