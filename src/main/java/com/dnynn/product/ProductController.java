@@ -24,10 +24,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
+
 	@Autowired
 	private ProductSubCategoryService productSubCategoryService;
-	
 
 	@RequestMapping(value = "/getAllProduct", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<ProductTable>> listAllProduct() {
@@ -42,10 +41,7 @@ public class ProductController {
 		ModelAndView modelAndView = new ModelAndView();
 		ProductTable productTable = new ProductTable();
 		List<ProductSubCategory> productSubCategoryList = new ArrayList<>();
-		productSubCategoryService.getAllProductSubCategory().forEach(productSubCategoryList::add);
-		productSubCategoryList.forEach((temp) -> {
-			System.out.println(temp.getName());
-		});
+		productSubCategoryService.getAllProductSubCategorySort().forEach(productSubCategoryList::add);
 		modelAndView.addObject("productSubCategoryList", productSubCategoryList);
 		modelAndView.addObject("productTable", productTable);
 		modelAndView.setViewName("/product/addProduct");
@@ -60,14 +56,15 @@ public class ProductController {
 			modelAndView.setViewName("/product/addProduct");
 			System.out.println("has Error" + bindingResult.toString());
 		} else {
-			
-			System.out.println(productTable.getProductSubCategory()+" ahahahah");
 			ProductSubCategory productSubCategory = new ProductSubCategory();
 			productSubCategory=productSubCategoryService.getProductSubCategoryByName(productTable.getProductSubCategory().getName());
 			productTable.setProductSubCategory(productSubCategory);
 			productService.addProduct(productTable);
 			modelAndView.addObject("successMessage", "Product has been registered successfully");
 			modelAndView.addObject("productTable", new ProductTable());
+			List<ProductSubCategory> productSubCategoryList = new ArrayList<>();
+			productSubCategoryService.getAllProductSubCategorySort().forEach(productSubCategoryList::add);
+			modelAndView.addObject("productSubCategoryList", productSubCategoryList);
 			modelAndView.setViewName("/product/addProduct");
 
 		}
@@ -75,10 +72,8 @@ public class ProductController {
 	}
 
 	@ModelAttribute("allSubCategory")
-	public List<ProductSubCategory> productSubCategories(){
+	public List<ProductSubCategory> productSubCategories() {
 		return productSubCategoryService.getAllProductSubCategory();
 	}
-
-	
 
 }

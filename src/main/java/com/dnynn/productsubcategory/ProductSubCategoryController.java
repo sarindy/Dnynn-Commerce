@@ -17,26 +17,24 @@ import com.dnynn.productcategory.ProductCategoryService;
 
 @RestController
 public class ProductSubCategoryController {
-	
+
 	@Autowired
 	private ProductSubCategoryService productSubCategoryService;
-	
+
 	@Autowired
 	private ProductCategoryService productCategoryService;
-	
+
 	@RequestMapping(value = "/addProductSubCategory", method = RequestMethod.GET)
 	public ModelAndView createNewProductSubCategory() {
 		ModelAndView modelAndView = new ModelAndView();
 		ProductSubCategory productSubCategory = new ProductSubCategory();
 		List<ProductCategory> productCategories = new ArrayList<>();
 		productCategoryService.getAllProductCategory().forEach(productCategories::add);
-		modelAndView.addObject("productCategoryList",productCategories );
+		modelAndView.addObject("productCategoryList", productCategories);
 		modelAndView.addObject("productSubCategory", productSubCategory);
 		modelAndView.setViewName("/productSubCategory/addProductSubCategory");
 		return modelAndView;
 	}
-	
-	
 
 	@RequestMapping(value = "/addProductSubCategory", method = RequestMethod.POST)
 	public ModelAndView createNewProductCategory(@Valid ProductSubCategory productSubCategory,
@@ -45,26 +43,33 @@ public class ProductSubCategoryController {
 
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("/productSubCategory/addProductSubCategory");
-			
+
 		} else {
-			System.out.println(productSubCategory.getProductCategory().getName());
+
 			ProductCategory productCategory = new ProductCategory();
 			productCategory=productCategoryService.getProductCategoryByName(productSubCategory.getProductCategory().getName());
+			System.out.println(productCategory.getName());
 			productSubCategory.setProductCategory(productCategory);
 			productSubCategoryService.addProductSubCategory(productSubCategory);
-			modelAndView.addObject("successMessage","Product Sub Category has been registered successfully");
+			modelAndView.addObject("successMessage", "Product Sub Category has been registered successfully");
+			List<ProductCategory> productCategories = new ArrayList<>();
+			productCategoryService.getAllProductCategory().forEach(productCategories::add);
+			modelAndView.addObject("productCategoryList", productCategories);
 			modelAndView.addObject("productSubCategory", new ProductSubCategory());
 			modelAndView.setViewName("/productSubCategory/addProductSubCategory");
+		
 
 		}
 		return modelAndView;
 	}
-	
-	/*private List<ProductCategory> populateProductCategory(){
-		List<ProductCategory> productCategories = new ArrayList<>();
-		
-		return null;
-		
-	}*/
+
+	/*
+	 * private List<ProductCategory> populateProductCategory(){
+	 * List<ProductCategory> productCategories = new ArrayList<>();
+	 * 
+	 * return null;
+	 * 
+	 * }
+	 */
 
 }

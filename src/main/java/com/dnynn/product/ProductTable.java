@@ -87,6 +87,14 @@ public class ProductTable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date lastModifiedDate;
 
+	public ProductSubCategory getProductSubCategory() {
+		return productSubCategory;
+	}
+
+	public void setProductSubCategory(ProductSubCategory productSubCategory) {
+		this.productSubCategory = productSubCategory;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "product_sub_category_id")
 	private ProductSubCategory productSubCategory;
@@ -203,14 +211,14 @@ public class ProductTable {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public ProductSubCategory getProductSubCategory() {
+	/*public ProductSubCategory getProductSubCategory() {
 		return productSubCategory;
 	}
 
 	public void setProductSubCategory(
 			ProductSubCategory productSubCategory) {
 		this.productSubCategory = productSubCategory;
-	}
+	}*/
 
 	public ProductTable() {
 

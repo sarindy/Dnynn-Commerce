@@ -95,8 +95,7 @@ public class TestModel {
 	}
 
 	public TestModel() {
-		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

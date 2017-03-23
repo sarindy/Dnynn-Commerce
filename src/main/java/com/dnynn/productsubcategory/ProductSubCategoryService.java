@@ -2,6 +2,8 @@ package com.dnynn.productsubcategory;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+
 public interface ProductSubCategoryService {
 
 	public List<ProductSubCategory> getAllProductSubCategory();
@@ -10,5 +12,6 @@ public interface ProductSubCategoryService {
 	public void addProductSubCategory(ProductSubCategory productSubCategory);
 	public void updateProductSubCategory(ProductSubCategory productSubCategory);
 	public void deleteProductSubCategory(ProductSubCategory productSubCategory);
+	public List<ProductSubCategory> getAllProductSubCategorySort();
 
 }

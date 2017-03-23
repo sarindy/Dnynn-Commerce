@@ -4,91 +4,57 @@
 <head>
 <title>Registration Form</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/addProduct.css}" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 
 </head>
 <body>
 	<div class="container">
 
 		<div class="row">
-		
-		<div class="col-md-10 col-md-offset-3">
 
-			<form class="form-horizontal" action="#" th:action="@{/testModel}"
-				th:object="${testModel}" method="post" >
+			<div class="col-md-10 col-md-offset-3">
 
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Customer Name</label>
-					<div class="col-sm-5">
-						<label th:if="${#fields.hasErrors('customerName')}"	th:errors="*{customerName}" class="validation-message"></label> 
-						<input type="text" th:field="*{customerName}" class="form-control" placeholder="Customer Name" aria-describedby="sizing-addon2" />
-					</div>
-				</div>
+				<form class="form-horizontal" action="#" th:action="@{/testMap}">
+
+
+
+
 
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Date of Birth</label>
-						<div class="col-sm-5">
-							<label th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="validation-message"></label>
-							<div class="input-group input-append date" id="datePicker">
-								<input type="text" name="date" th:field="*{dateOfBirth}" class="form-control" placeholder="Date of Birth" aria-describedby="sizing-addon2" />
-								 <span class="input-group-addon add-on">
-								 	<span class="glyphicon glyphicon-calendar"></span>
-								 </span>
-							</div>
+						<div class="col-sm-9">
+							<table>
+								<tr th:each="instance, iterSta : ${category}">
+									<td th:text="${instance.id}">keyvalue</td>
+									<td th:text="${instance.name}">keyvalue</td>
+								</tr>
+							</table>
 						</div>
 					</div>
-					
-					
 
 
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Future Date</label>
-						<div class="col-sm-5">
-							<label th:if="${#fields.hasErrors('futureDate')}" th:errors="*{futureDate}" class="validation-message"></label>
-							<div class="input-group input-append date" id="datePicker2">
-								<input type="text" name="date" th:field="*{futureDate}"	class="form-control" placeholder="Future Date" aria-describedby="sizing-addon2" />
-								<span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-							</div>
-						</div> 
-					</div>
-				
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Salary</label>
-					<div class="col-sm-5">
-						<label th:if="${#fields.hasErrors('salary')}"
-							th:errors="*{salary}" class="validation-message"></label> <input
-							type="number"  th:field="*{salary}" class="form-control"
-							placeholder="Salary" aria-describedby="sizing-addon2" />
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Rank</label>
-					<div class="col-sm-5">
-						<label th:if="${#fields.hasErrors('rank')}"
-							th:errors="*{rank}" class="validation-message"></label> <input
-							type="number"  th:field="*{rank}" class="form-control"
-							placeholder="Rank" aria-describedby="sizing-addon2" />
-					</div>
-				</div>
 
-					
 
 
 					<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Apply</button>
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Apply</button>
+						</div>
 					</div>
-				</div>
-				<span th:utext="${successMessage}"></span>
-			</form>
-		</div>
+					<span th:utext="${successMessage}"></span>
+				</form>
+			</div>
 		</div>
 
 
@@ -99,18 +65,15 @@
 </body>
 
 <script>
-$(document).ready(function() {
-    $('#datePicker')
-        .datepicker({
-            format: 'dd/mm/yyyy'
-        });
-    $('#datePicker2')
-    .datepicker({
-        format: 'dd/mm/yyyy'
-    });
+	$(document).ready(function() {
+		$('#datePicker').datepicker({
+			format : 'dd/mm/yyyy'
+		});
+		$('#datePicker2').datepicker({
+			format : 'dd/mm/yyyy'
+		});
 
-   
-});
+	});
 </script>
 </html>
 

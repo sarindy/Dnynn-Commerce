@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface ProductCategoryRepository extends CrudRepository<ProductCategory, Integer> {
 	public ProductCategory findByName(String name);
 	
+	
 
 }

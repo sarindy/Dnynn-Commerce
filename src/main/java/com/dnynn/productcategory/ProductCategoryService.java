@@ -1,6 +1,7 @@
 package com.dnynn.productcategory;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductCategoryService {
 	
@@ -15,5 +16,7 @@ public interface ProductCategoryService {
 	public void deleteProductCategory(ProductCategory productCategory);
 	
 	public ProductCategory getProductCategoryByName(String name);
+	
+	public Map<Integer, String> getAllProductCategoryNames();
 
 }

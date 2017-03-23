@@ -33,10 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void addProduct(ProductTable product) {
-		//DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-		Date currentDate = new Date();
-		//System.out.println(df.format(currentDate));
-		product.setLastModifiedDate( currentDate);
+		product.setLastModifiedDate( new Date());
 		productRepo.save(product);
 	}
 

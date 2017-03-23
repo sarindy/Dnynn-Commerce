@@ -37,13 +37,22 @@ public class ProductCategory {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date lastModifiefDate;
-	
+	/*
 	@OneToMany(mappedBy="productCategory",cascade=CascadeType.ALL)
-	private List<ProductSubCategory> productSubCategory;
+	private List<ProductSubCategory> productSubCategory;*/
+	
 
 	public int getId() {
 		return id;
 	}
+
+	/*public List<ProductSubCategory> getProductCategories() {
+		return productSubCategory;
+	}
+
+	public void setProductCategories(List<ProductSubCategory> productCategories) {
+		this.productSubCategory = productCategories;
+	}*/
 
 	public void setId(int id) {
 		this.id = id;
@@ -65,14 +74,7 @@ public class ProductCategory {
 		this.lastModifiefDate = lastModifiefDate;
 	}
 
-	public List<ProductSubCategory> getProductSubCategory() {
-		return productSubCategory;
-	}
-
-	public void setProductSubCategory(List<ProductSubCategory> productSubCategory) {
-		this.productSubCategory = productSubCategory;
-	}
-
+	
 	public ProductCategory() {
 		
 	}

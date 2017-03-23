@@ -1,5 +1,8 @@
 package com.dnynn.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.dnynn.productcategory.ProductCategory;
+import com.dnynn.productcategory.ProductCategoryServiceImpl;
 
 @RestController
 public class TestModelController {
@@ -39,6 +45,20 @@ public class TestModelController {
 			modelAndView.setViewName("testModel");
 
 		}
+		return modelAndView;
+	}
+	
+	@Autowired
+	private ProductCategoryServiceImpl productCatSer;
+	@RequestMapping(value = "/testMap", method = RequestMethod.GET)
+	public ModelAndView Test() {
+		ModelAndView modelAndView = new ModelAndView();
+		ProductCategory p = new ProductCategory();
+		List<ProductCategory> categories = new ArrayList<>();
+		productCatSer.getAllProductCategory().forEach(categories::add);
+		modelAndView.addObject("category", categories);
+		modelAndView.addObject("p", p);
+		modelAndView.setViewName("testModel");
 		return modelAndView;
 	}
 	
