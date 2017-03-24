@@ -29,7 +29,7 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		modelAndView.addObject("user", user);
-		modelAndView.setViewName("/user/admin/adminRegistration");
+		modelAndView.setViewName("/user/registration");
 		return modelAndView;
 	}
 
@@ -42,12 +42,12 @@ public class UserController {
 					"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("registration");
+			modelAndView.setViewName("/user/registration");
 		} else {
 			userService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("/user/admin/adminRegistration");
+			modelAndView.setViewName("/user/registration");
 
 		}
 		return modelAndView;
@@ -58,7 +58,7 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
 		modelAndView.addObject("user", user);
-		modelAndView.setViewName("/user/registration");
+		modelAndView.setViewName("/");
 		return modelAndView;
 	}
 
@@ -71,12 +71,12 @@ public class UserController {
 					"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("/user/registration");
+			modelAndView.setViewName("/");
 		} else {
-			userService.saveUser(user,"USER");
+			userService.saveUser(user, "USER");
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("/user/registration");
+			modelAndView.setViewName("/");
 
 		}
 		return modelAndView;
@@ -87,7 +87,8 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+		modelAndView.addObject("userName",
+				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("/user/admin/home");
 		return modelAndView;

@@ -38,13 +38,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login").permitAll()
-				.antMatchers("/addProduct").permitAll().antMatchers("/registration/user").permitAll()
-				.antMatchers("/user/admin/**").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf().disable()
-				.formLogin().loginPage("/user/login").failureUrl("/user/login?error=true").defaultSuccessUrl("/user/admin/home")
+		http.authorizeRequests().antMatchers("/").permitAll()
+				.antMatchers("/login").permitAll()
+				.antMatchers("/registration").permitAll()
+				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated().and().csrf().disable()
+				.formLogin().loginPage("/user/login").failureUrl("/user/login?error=true").defaultSuccessUrl("/admin/home")
 				.usernameParameter("email").passwordParameter("password").and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).logoutSuccessUrl("/").and()
-				.exceptionHandling().accessDeniedPage("/user/access-denied");
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
+				.exceptionHandling().accessDeniedPage("/access-denied");
 	}
 
 	@Override
