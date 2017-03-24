@@ -17,32 +17,32 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="test_model")
+@Table(name = "test_model")
 public class TestModel {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Column(name="customer_name")
-	@NotEmpty(message="name not empty")
+
+	@Column(name = "customer_name")
+	@NotEmpty(message = "name not empty")
 	private String customerName;
-	
-	@Column(name="date_of_birth")
+
+	@Column(name = "date_of_birth")
 	@Past
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateOfBirth;
-	
-	@Column(name="future_date")
+
+	@Column(name = "future_date")
 	@Future
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date futureDate;
-	
+
 	@DecimalMin("1")
-	@Column(name="salary")
+	@Column(name = "salary")
 	private double salary;
-	
-	@Column(name="rank")
+
+	@Column(name = "rank")
 	@Min(1)
 	private int rank;
 
@@ -95,16 +95,7 @@ public class TestModel {
 	}
 
 	public TestModel() {
-		
-	}
-	
-	
-	
-	
 
-	
-	
-	
-	
+	}
 
 }

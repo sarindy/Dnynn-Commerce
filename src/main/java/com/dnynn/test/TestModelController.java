@@ -17,11 +17,10 @@ import com.dnynn.productcategory.ProductCategoryServiceImpl;
 
 @RestController
 public class TestModelController {
-	
+
 	@Autowired
 	private TestModelService testModelService;
-	
-	
+
 	@RequestMapping(value = "/testModel", method = RequestMethod.GET)
 	public ModelAndView registration() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -37,7 +36,7 @@ public class TestModelController {
 
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("testModel");
-			
+
 		} else {
 			testModelService.addModelObj(testModel);
 			modelAndView.addObject("successMessage", "Registered successfully");
@@ -47,9 +46,10 @@ public class TestModelController {
 		}
 		return modelAndView;
 	}
-	
+
 	@Autowired
 	private ProductCategoryServiceImpl productCatSer;
+
 	@RequestMapping(value = "/testMap", method = RequestMethod.GET)
 	public ModelAndView Test() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -61,7 +61,5 @@ public class TestModelController {
 		modelAndView.setViewName("testModel");
 		return modelAndView;
 	}
-	
-	
 
 }

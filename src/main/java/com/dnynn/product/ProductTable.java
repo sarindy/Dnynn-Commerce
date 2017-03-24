@@ -53,7 +53,7 @@ public class ProductTable {
 	private int safetyStockLevel; // minimum alert stock quantity
 
 	@Column(name = "reorder_point")
-	private int reorderPoint; // quatity alert to reorder product
+	private int reorderPoint; // quantity alert to reorder product
 
 	@Column(name = "standard_cost")
 	@DecimalMin(value = "1")

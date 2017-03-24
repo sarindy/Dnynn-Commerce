@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Products</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/registration.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+	<div class="container">
+		<div th:if="${not #lists.isEmpty(products)}">
+			<h1>Product List</h1>
+			<table class="table table-striped">
+				<tr>
+					<td>ID</td>
+					<td>Description</td>
+					<td>Purchased Date</td>
+
+				</tr >
+				<tr th:each="product : ${products}">
+					<td th:text="${product.id}"></td>
+					<td th:text="${product.description}"></td>
+					<td th:text="${product.purchsedDate}"></td>
+
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
