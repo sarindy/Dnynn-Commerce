@@ -54,7 +54,8 @@ public class UserController {
 		System.out.println(auth.getName() + "***********" + auth.getAuthorities().toString());
 		User user = userService.findUserByEmail(auth.getName());
 
-		modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+		modelAndView.addObject("userName",
+				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with User Role");
 		modelAndView.setViewName("/user/userHomePage");
 		return modelAndView;
@@ -72,7 +73,8 @@ public class UserController {
 			System.out.println("FUCK");
 		}
 		User user = userService.findUserByEmail(auth.getName());
-		modelAndView.addObject("userName", "Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+		modelAndView.addObject("userName",
+				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("/admin/adminHomePage");
 		return modelAndView;
@@ -93,24 +95,41 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/admin/UserRegistration", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult,@RequestParam(value="role") String role) {
+	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult,
+			@RequestParam(value = "role") String role) {
 		ModelAndView modelAndView = new ModelAndView();
 		User userExists = userService.findUserByEmail(user.getEmail());
 		System.out.println(role);
 		if (userExists != null) {
-			bindingResult.rejectValue("email", "error.user", "There is already a user registered with the email provided");
+			bindingResult.rejectValue("email", "error.user",
+					"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("/admin/UserRegistrationPage");
 		} else {
-			
-			
-			userService.saveUser(user,role);
+
+			userService.saveUser(user, role);
+			List<Role> roles = new ArrayList<>();
+			roleRepo.findAll().forEach(roles::add);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
+
+			modelAndView.addObject("roleList", roles);
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("/admin/UserRegistrationPage");
 
 		}
+		return modelAndView;
+	}
+
+	@RequestMapping("/initAdmin")
+	public ModelAndView InitialAdmin() {
+		Role role = new Role();
+		role.setRole("ADMIN");
+		roleRepo.save(role);
+		User user = new User("Sarindy", "Ouk", "sarindy@dnynn.com", "123456", 1);
+		userService.saveUser(user, "ADMIN");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("loginPage");
 		return modelAndView;
 	}
 

@@ -22,33 +22,33 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private int id;
-	
-	@Column(name="first_name")
-	@NotEmpty(message="*Please provide first name")
+
+	@Column(name = "first_name")
+	@NotEmpty(message = "*Please provide first name")
 	private String firstName;
-	
-	@Column(name="last_name")
-	@NotEmpty(message="*Please provide last name")
+
+	@Column(name = "last_name")
+	@NotEmpty(message = "*Please provide last name")
 	private String lastName;
-	
-	@Column(name="email")
-	@Email(message="* please provide a valid email")
-	@NotEmpty(message="* please provide email")
+
+	@Column(name = "email")
+	@Email(message = "* please provide a valid email")
+	@NotEmpty(message = "* please provide email")
 	private String email;
-	
-	@Column(name="password")
-	@Length(min=5,message="* Your password must at least 5 characters")
-	@NotEmpty(message="* Please provide password")
+
+	@Column(name = "password")
+	@Length(min = 5, message = "* Your password must at least 5 characters")
+	@NotEmpty(message = "* Please provide password")
 	private String password;
-	
-	@Column(name="active")
+
+	@Column(name = "active")
 	private int active;
-	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="user_role",joinColumns=@JoinColumn(name="user_id"), inverseJoinColumns=@JoinColumn(name="role_id"))
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
 
 	public int getId() {
@@ -108,12 +108,18 @@ public class User {
 	}
 
 	public User() {
-		
+
+	}
+
+	public User(String firstName, String lastName, String email, String password, int active) {
+
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.active = active;
 	}
 	
 	
-	
-	
-	
-	
+
 }

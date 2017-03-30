@@ -15,28 +15,28 @@ public class ProductCategoryController {
 	@Autowired
 	private ProductCategoryService productCategoryService;
 
-	@RequestMapping(value = "/addProductCategory", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/addProductCategory", method = RequestMethod.GET)
 	public ModelAndView createNewProductCategory() {
 		ModelAndView modelAndView = new ModelAndView();
 		ProductCategory productCategory = new ProductCategory();
 		modelAndView.addObject("productCategory", productCategory);
-		modelAndView.setViewName("/productCategory/addProductCategory");
+		modelAndView.setViewName("/user/products/addProductCategory");
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/addProductCategory", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/addProductCategory", method = RequestMethod.POST)
 	public ModelAndView createNewProductCategory(@Valid ProductCategory productCategory,
 			BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("addProduct");
+			modelAndView.setViewName("/user/products/addProductCategory");
 			System.out.println("has Error" + bindingResult.toString());
 		} else {
 			productCategoryService.addProductCategory(productCategory);;
 			modelAndView.addObject("successMessage","Product Category has been registered successfully");
 			modelAndView.addObject("productCategory", new ProductCategory());
-			modelAndView.setViewName("/productCategory/addProductCategory");
+			modelAndView.setViewName("/user/products/addProductCategory");
 
 		}
 		return modelAndView;
