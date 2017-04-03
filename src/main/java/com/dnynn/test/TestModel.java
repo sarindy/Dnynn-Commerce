@@ -28,23 +28,57 @@ public class TestModel {
 	@NotEmpty(message = "name not empty")
 	private String customerName;
 
-	@Column(name = "date_of_birth")
-	@Past
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dateOfBirth;
+	/*
+	 * @Column(name = "date_of_birth")
+	 * 
+	 * @Past
+	 * 
+	 * @DateTimeFormat(pattern = "dd/MM/yyyy") private Date dateOfBirth;
+	 * 
+	 * @Column(name = "future_date")
+	 * 
+	 * @Future
+	 * 
+	 * @DateTimeFormat(pattern = "dd/MM/yyyy") private Date futureDate;
+	 * 
+	 * @DecimalMin("1")
+	 * 
+	 * @Column(name = "salary") private double salary;
+	 * 
+	 * @Column(name = "rank")
+	 * 
+	 * @Min(1) private int rank;
+	 * 
+	 * public int getId() { return id; }
+	 * 
+	 * public void setId(int id) { this.id = id; }
+	 * 
+	 * public String getCustomerName() { return customerName; }
+	 * 
+	 * public void setCustomerName(String customerName) { this.customerName =
+	 * customerName; }
+	 * 
+	 * public Date getDateOfBirth() { return dateOfBirth; }
+	 * 
+	 * public void setDateOfBirth(Date dateOfBirth) { this.dateOfBirth =
+	 * dateOfBirth; }
+	 * 
+	 * public Date getFutureDate() { return futureDate; }
+	 * 
+	 * public void setFutureDate(Date futureDate) { this.futureDate =
+	 * futureDate; }
+	 * 
+	 * public double getSalary() { return salary; }
+	 * 
+	 * public void setSalary(double salary) { this.salary = salary; }
+	 * 
+	 * public int getRank() { return rank; }
+	 * 
+	 * public void setRank(int rank) { this.rank = rank; }
+	 */
+	public TestModel() {
 
-	@Column(name = "future_date")
-	@Future
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date futureDate;
-
-	@DecimalMin("1")
-	@Column(name = "salary")
-	private double salary;
-
-	@Column(name = "rank")
-	@Min(1)
-	private int rank;
+	}
 
 	public int getId() {
 		return id;
@@ -58,44 +92,12 @@ public class TestModel {
 		return customerName;
 	}
 
-	public void setCustomerName(String customerName) {
+	public TestModel(String customerName) {
 		this.customerName = customerName;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public Date getFutureDate() {
-		return futureDate;
-	}
-
-	public void setFutureDate(Date futureDate) {
-		this.futureDate = futureDate;
-	}
-
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
-
-	public TestModel() {
-
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 }

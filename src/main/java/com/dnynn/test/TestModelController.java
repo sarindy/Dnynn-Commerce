@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +40,7 @@ public class TestModelController {
 			modelAndView.setViewName("testModel");
 
 		} else {
-			testModelService.addModelObj(testModel);
+			testModelService.addModelObj();
 			modelAndView.addObject("successMessage", "Registered successfully");
 			modelAndView.addObject("testModel", new TestModel());
 			modelAndView.setViewName("testModel");
@@ -60,6 +62,22 @@ public class TestModelController {
 		modelAndView.addObject("p", p);
 		modelAndView.setViewName("testModel");
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="/123456")
+	public ResponseEntity<?> getAllModel(){
+		testModelService.addModelObj();
+		
+		return new ResponseEntity<Object>(HttpStatus.OK);
+		//
+	}
+	
+	@RequestMapping(value="/999")
+	public ResponseEntity<?> getAllModels(){
+		List<TestModel> models = new ArrayList<>();
+		testModelService.getAllModels().forEach(models::add);
+		return new ResponseEntity<List<TestModel>>(models,HttpStatus.OK);
+		//
 	}
 
 }
