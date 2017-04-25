@@ -1,4 +1,4 @@
-package com.dnynn.productcategory;
+package com.dnynn.productCategory;
 
 import java.util.ArrayList;
 import java.util.Date;

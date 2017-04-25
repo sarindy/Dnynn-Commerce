@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.dnynn.productsubcategory.ProductSubCategory;
+import com.dnynn.productSubCategory.ProductSubCategory;
 
 @Entity
 @Table(name = "product_table", uniqueConstraints = @UniqueConstraint(columnNames = {

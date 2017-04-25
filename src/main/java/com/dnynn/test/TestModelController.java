@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dnynn.productcategory.ProductCategory;
-import com.dnynn.productcategory.ProductCategoryServiceImpl;
+import com.dnynn.productCategory.ProductCategory;
+import com.dnynn.productCategory.ProductCategoryServiceImpl;
 
 @RestController
 public class TestModelController {

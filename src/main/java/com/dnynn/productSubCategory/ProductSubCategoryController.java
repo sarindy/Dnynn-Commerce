@@ -1,4 +1,4 @@
-package com.dnynn.productsubcategory;
+package com.dnynn.productSubCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dnynn.productcategory.ProductCategory;
-import com.dnynn.productcategory.ProductCategoryService;
+import com.dnynn.productCategory.ProductCategory;
+import com.dnynn.productCategory.ProductCategoryService;
 
 @RestController
 public class ProductSubCategoryController {

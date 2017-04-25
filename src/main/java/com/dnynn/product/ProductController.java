@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dnynn.productsubcategory.ProductSubCategory;
-import com.dnynn.productsubcategory.ProductSubCategoryService;
+import com.dnynn.productSubCategory.ProductSubCategory;
+import com.dnynn.productSubCategory.ProductSubCategoryService;
 
 @Controller
 public class ProductController {

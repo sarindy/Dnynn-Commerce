@@ -1,4 +1,4 @@
-package com.dnynn.productcategory;
+package com.dnynn.productCategory;
 
 import java.util.List;
 import java.util.Map;

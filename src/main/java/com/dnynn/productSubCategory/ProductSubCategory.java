@@ -1,4 +1,4 @@
-package com.dnynn.productsubcategory;
+package com.dnynn.productSubCategory;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.dnynn.productcategory.ProductCategory;
+import com.dnynn.productCategory.ProductCategory;
 
 @Entity
 @Table(name="product_sub_category",uniqueConstraints=@UniqueConstraint(columnNames={"name"}))

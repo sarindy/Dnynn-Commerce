@@ -1,4 +1,4 @@
-package com.dnynn.productsubcategory;
+package com.dnynn.productSubCategory;
 
 import java.util.List;
 
