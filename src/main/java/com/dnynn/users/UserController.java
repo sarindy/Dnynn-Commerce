@@ -57,26 +57,22 @@ public class UserController {
 		modelAndView.addObject("userName",
 				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with User Role");
-		modelAndView.setViewName("/user/userHomePage");
+		modelAndView.setViewName("user/userHomePage");
 		return modelAndView;
 
 	}
 
 	@RequestMapping(value = "/admin/adminHome", method = RequestMethod.GET)
-	public ModelAndView adminHome(HttpServletRequest request) {
+	public ModelAndView adminHome() {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(auth.getName() + "***********" + auth.getAuthorities().toString());
-		if (request.isUserInRole("USER")) {
-			System.out.println("YEAH");
-		} else {
-			System.out.println("FUCK");
-		}
+
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("userName",
 				"Welcome " + user.getFirstName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-		modelAndView.setViewName("/admin/adminHomePage");
+		modelAndView.setViewName("admin/adminHomePage");
 		return modelAndView;
 
 	}
@@ -90,7 +86,7 @@ public class UserController {
 
 		modelAndView.addObject("user", user);
 		modelAndView.addObject("roleList", roles);
-		modelAndView.setViewName("/admin/UserRegistrationPage");
+		modelAndView.setViewName("admin/UserRegistrationPage");
 		return modelAndView;
 	}
 
@@ -105,7 +101,7 @@ public class UserController {
 					"There is already a user registered with the email provided");
 		}
 		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("/admin/UserRegistrationPage");
+			modelAndView.setViewName("admin/UserRegistrationPage");
 		} else {
 
 			userService.saveUser(user, role);
@@ -115,7 +111,7 @@ public class UserController {
 
 			modelAndView.addObject("roleList", roles);
 			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("/admin/UserRegistrationPage");
+			modelAndView.setViewName("admin/UserRegistrationPage");
 
 		}
 		return modelAndView;
